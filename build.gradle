@@ -61,3 +61,25 @@ grailsPublish {
     desc = "Servlet filter that adds a X-FRAME-OPTIONS response header"
     developers = [mrhaki:"Hubert A. Klein Ikkink", sergio:"Sergio del Amo Caballero", sbglasius: "Søren Berg Glasius"]
 }
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            groupId = project.group
+            artifactId = rootProject.name
+            version = project.version
+        }
+    }
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/${System.getenv("GITHUB_REPOSITORY")}")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+}

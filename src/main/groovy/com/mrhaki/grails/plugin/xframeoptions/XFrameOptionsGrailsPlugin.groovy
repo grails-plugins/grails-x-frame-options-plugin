@@ -9,7 +9,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean
 @Slf4j
 class XFrameOptionsGrailsPlugin extends Plugin {
 
-    def grailsVersion = "3.2.6 > *"
+    def grailsVersion = "7.0.0 > *"
 
     def title = 'X-Frame-Options Plugin'
     def author = 'Hubert A. Klein Ikkink aka mrhaki'
@@ -22,13 +22,13 @@ class XFrameOptionsGrailsPlugin extends Plugin {
 
     def profiles = ['web']
 
-    def documentation = "http://github.com/mrhaki/grails-x-frame-options-plugin/"
+    def documentation = "https://github.com/grails-plugins/grails-x-frame-options-plugin"
 
-    def license = 'APACHE'
+    def license = 'Apache 2.0 License'
 
-    def issueManagement = [system: 'GitHub', url: 'https://github.com/mrhaki/grails-x-frame-options-plugin/issues']
+    def issueManagement = [system: 'GitHub', url: 'https://github.com/grails-plugins/grails-x-frame-options-plugin/issues']
 
-    def scm = [url: "https://github.com/mrhaki/grails-x-frame-options-plugin/"]
+    def scm = [url: "https://github.com/grails-plugins/grails-x-frame-options-plugin"]
 
     Closure doWithSpring() {
         { ->

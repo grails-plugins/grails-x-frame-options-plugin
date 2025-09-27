@@ -1,59 +1,48 @@
-buildscript {
-    repositories {
-        mavenLocal()
-        maven { url "https://repo.grails.org/grails/core" }
-    }
-    dependencies {
-        classpath "org.grails:grails-gradle-plugin:$grailsVersion"
-    }
-}
+version = projectVersion
+group = 'org.grails.plugins'
 
-version "1.1.2"
-group "org.grails.plugins"
-
-apply plugin:"eclipse"
-apply plugin:"idea"
-apply plugin:"org.grails.grails-plugin"
-apply plugin:"org.grails.grails-plugin-publish"
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.apache.grails.gradle.grails-plugin'
+apply plugin: 'org.apache.grails.gradle.grails-publish'
 
 repositories {
     mavenLocal()
-    maven { url "https://repo.grails.org/grails/core" }
-    jcenter()
-}
-
-dependencyManagement {
-    imports {
-        mavenBom "org.grails:grails-bom:$grailsVersion"
+    maven { url "https://repo.grails.org/grails/restricted" }
+    maven {
+        url = 'https://repository.apache.org/content/groups/snapshots'
+        content {
+            includeVersionByRegex('org[.]apache[.](grails|groovy).*', '.*', '.*-SNAPSHOT')
+        }
     }
-    applyMavenExclusions false
 }
 
 dependencies {
-    compile "org.springframework.boot:spring-boot-starter-logging"
-    compile "org.springframework.boot:spring-boot-autoconfigure"
-    compile "org.grails:grails-core"
-    compile "org.springframework.boot:spring-boot-starter-tomcat"
-    compile "org.grails:grails-dependencies"
-    compile "org.grails:grails-web-boot"
-    console "org.grails:grails-console"
-    profile "org.grails.profiles:web-plugin"
-    testCompile "org.grails:grails-plugin-testing"
+    implementation platform("org.apache.grails:grails-bom:$grailsVersion")
+    implementation "org.springframework.boot:spring-boot-starter-logging"
+    implementation "org.springframework.boot:spring-boot-autoconfigure"
+    implementation "org.apache.grails:grails-core"
+    implementation "org.springframework.boot:spring-boot-starter-tomcat"
+    implementation "org.apache.grails:grails-web-boot"
+    console "org.apache.grails:grails-console"
+    profile "org.apache.grails.profiles:web-plugin"
+    testImplementation 'org.apache.grails:grails-dependencies-test'
+}
+
+test {
+    useJUnitPlatform()
 }
 
 bootRun {
     jvmArgs('-Dspring.output.ansi.enabled=always')
 }
-// enable if you wish to package this plugin as a standalone application
-bootRepackage.enabled = false
-findMainClass.enabled = false
 
 grailsPublish {
     if (System.getenv('BINTRAY_USER') || project.hasProperty('bintrayUser')) {
         user = System.getenv('BINTRAY_USER') ?: project.property('bintrayUser')
         key = System.getenv('BINTRAY_KEY') ?: project.property('bintrayKey')
     }
-    githubSlug = 'mrhaki/grails-x-frame-options-plugin'
+    githubSlug = 'grails-plugins/grails-x-frame-options-plugin'
     license {
         name = 'Apache-2.0'
     }

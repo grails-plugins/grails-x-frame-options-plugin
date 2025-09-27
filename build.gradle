@@ -14,7 +14,7 @@ group "org.grails.plugins"
 apply plugin:"eclipse"
 apply plugin:"idea"
 apply plugin:"org.grails.grails-plugin"
-apply plugin:"org.grails.grails-plugin-publish"
+apply plugin: 'maven-publish'
 
 repositories {
     mavenLocal()
@@ -44,24 +44,9 @@ dependencies {
 bootRun {
     jvmArgs('-Dspring.output.ansi.enabled=always')
 }
-// enable if you wish to package this plugin as a standalone application
+
 bootRepackage.enabled = false
 findMainClass.enabled = false
-
-grailsPublish {
-    if (System.getenv('BINTRAY_USER') || project.hasProperty('bintrayUser')) {
-        user = System.getenv('BINTRAY_USER') ?: project.property('bintrayUser')
-        key = System.getenv('BINTRAY_KEY') ?: project.property('bintrayKey')
-    }
-    githubSlug = 'mrhaki/grails-x-frame-options-plugin'
-    license {
-        name = 'Apache-2.0'
-    }
-    title = "X-Frame-Options Plugin"
-    desc = "Servlet filter that adds a X-FRAME-OPTIONS response header"
-    developers = [mrhaki:"Hubert A. Klein Ikkink", sergio:"Sergio del Amo Caballero", sbglasius: "Søren Berg Glasius"]
-}
-apply plugin: 'maven-publish'
 
 publishing {
     publications {

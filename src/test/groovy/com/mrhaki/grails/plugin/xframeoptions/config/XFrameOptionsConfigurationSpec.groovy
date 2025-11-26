@@ -31,10 +31,10 @@ class XFrameOptionsConfigurationSpec extends Specification {
     def "header value must be set to ALLOW-FROM with a value if configuration property allowFrom has a value"() {
         given:
         def config = new XFrameOptionsConfiguration()
-        config.allowFrom = 'http://www.mrhaki.com'
+        config.allowFrom = 'https://www.mrhaki.com'
 
         expect:
-        config.determineHeaderValue() == "${ALLOW_FROM} http://www.mrhaki.com" as String
+        config.determineHeaderValue() == "${ALLOW_FROM} https://www.mrhaki.com" as String
     }
 
     def "header value must be set to DENY if configuration properties are not set"() {

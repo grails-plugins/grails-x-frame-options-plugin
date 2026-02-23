@@ -118,8 +118,16 @@ jobs:
           findSonatypeStagingRepository
           releaseSonatypeStagingRepository
       - name: "📖 Generate Documentation"
-        run: ./gradlew docs
+        run: |
+          if ./gradlew help --task docs > /dev/null 2>&1; then
+            ./gradlew docs
+            echo "docs_generated=true" >> $GITHUB_OUTPUT
+          else
+            echo "❎ docs task not found, skipping"
+            echo "docs_generated=false" >> $GITHUB_OUTPUT
+          fi
       - name: "📤 Publish Documentation to Github Pages"
+        if: success() && steps.docs.outputs.docs_generated == 'true'
         uses: apache/grails-github-actions/deploy-github-pages@asf
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

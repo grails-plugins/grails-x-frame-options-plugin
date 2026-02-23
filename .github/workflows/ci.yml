@@ -88,10 +88,18 @@ jobs:
           --no-build-cache
           --rerun-tasks
       - name: "📜 Generate Documentation"
+        id: docs
         if: success()
-        run: ./gradlew docs
+        run: |
+          if ./gradlew help --task docs > /dev/null 2>&1; then
+            ./gradlew docs
+            echo "docs_generated=true" >> $GITHUB_OUTPUT
+          else
+            echo "❎ docs task not found, skipping"
+            echo "docs_generated=false" >> $GITHUB_OUTPUT
+          fi
       - name: "🚀 Publish to Github Pages"
-        if: success()
+        if: success() && steps.docs.outputs.docs_generated == 'true'
         uses: apache/grails-github-actions/deploy-github-pages@asf
         env:
           GRADLE_PUBLISH_RELEASE: 'false'

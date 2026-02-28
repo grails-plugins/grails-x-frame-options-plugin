@@ -1,4 +1,4 @@
-:plugin-version: 2.0.0-SNAPSHOT
+:plugin-version: 2.0.0
 
 == Grails X-Frame-Options Plugin
 
@@ -11,7 +11,7 @@ More information about using X-Frame-Options for defending against clickjacking:
 
 == Installation
 
-These instructions are targeted towards Grails 3 installations. For Grails 2.x refer to branch 1.x of the plugin.
+These instructions are targeted towards Grails 7 installations. For older Grails versions refer to branch 1.x of the plugin.
 
 Add a dependency to `build.gradle`:
 

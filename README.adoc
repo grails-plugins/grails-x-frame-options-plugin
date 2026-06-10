@@ -1,5 +1,9 @@
 :plugin-version: 2.0.0
 
+https://central.sonatype.com/artifact/org.grails.plugins/x-frame-options[image:https://img.shields.io/maven-central/v/org.grails.plugins/x-frame-options[Maven
+Central]]
+https://github.com/grails-plugins/grails-x-frame-options-plugin/actions/workflows/ci.yml[image:https://github.com/grails-plugins/grails-x-frame-options-plugin/actions/workflows/ci.yml/badge.svg[CI]]
+
 == Grails X-Frame-Options Plugin
 
 Filter to set HTTP response header X-Frame-Options to defend against
@@ -15,7 +19,7 @@ These instructions are targeted towards Grails 7 installations. For older Grails
 
 Add a dependency to `build.gradle`:
 
-[subs="attributes"]
+[source,groovy,subs="attributes"]
 ----
 ...
 dependencies {
@@ -35,6 +39,7 @@ The plugin is configured through `grails-app/conf/application.yml`.
 
 We can limit the URL pattern the filter is applied to:
 
+[source, yaml]
 ----
 grails:
     plugin:
@@ -43,7 +48,7 @@ grails:
 ----
 
 We can also set multiple patterns:
-
+[source, yaml]
 ----
 grails:
     plugin:
@@ -55,7 +60,7 @@ grails:
 
 We can set different header values based on the configuration.
 To set the header value `DENY` we must use the following configuration:
-
+[source, yaml]
 ----
 grails:
     plugin:
@@ -67,7 +72,7 @@ This is also the default value if no configuration is provided or no configurati
 are set.
 
 To set the header value `SAMEORIGIN` we must use the following configuration:
-
+[source, yaml]
 ----
 grails:
     plugin:
@@ -76,7 +81,7 @@ grails:
 ----
 
 To set the header value `ALLOW-FROM` with a URL we must use the following configuration:
-
+[source, yaml]
 ----
 grails:
     plugin:
@@ -85,7 +90,7 @@ grails:
 ----
 
 To disable the filter we must use the following configuration option:
-
+[source, yaml]
 ----
 grails:
     plugin:

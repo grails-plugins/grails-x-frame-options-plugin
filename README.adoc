@@ -6,7 +6,6 @@ https://central.sonatype.com/artifact/org.grails.plugins/x-frame-options[image:h
 Central]]
 https://github.com/grails-plugins/grails-x-frame-options-plugin/actions/workflows/ci.yml[image:https://github.com/grails-plugins/grails-x-frame-options-plugin/actions/workflows/ci.yml/badge.svg[CI]]
 
-
 Filter to set HTTP response header X-Frame-Options to defend against
 http://en.wikipedia.org/wiki/Clickjacking[ClickJacking].
 
@@ -20,7 +19,7 @@ These instructions are targeted towards Grails 7 installations. For older Grails
 
 Add a dependency to `build.gradle`:
 
-[source,groovy,subs="attributes"]
+[source, groovy, subs="attributes"]
 ----
 ...
 dependencies {
@@ -102,6 +101,8 @@ grails:
 The filter is enabled by default and will use the `DENY` header value.
 
 == Changelog
+
+For future changelogs see the GitHub https://github.com/grails-plugins/grails-x-frame-options-plugin/releases[releases] section.
 
 === 2.0.0
 - Grails 7.0.7
